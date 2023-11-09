@@ -150,6 +150,7 @@ $result = $conn->query($sql);
             <th>Tanggal Lahir</th>
             <th>Jenis Kelamin</th>
             <th>Email</th>
+            <th>Foto</th>
             <th>Aksi</th> <!-- Kolom untuk tombol Edit dan Hapus -->
         </tr>
         <?php
@@ -162,6 +163,7 @@ $result = $conn->query($sql);
                 echo "<td>" . $row["tanggal_lahir"] . "</td>";
                 echo "<td>" . $row["jenis_kelamin"] . "</td>";
                 echo "<td>" . $row["email"] . "</td>";
+                echo "<td><img src='" . $row["foto_path"] . "' alt='Foto' style='max-width: 100px;'></td>";
 
                 // Tombol Edit (mengarahkan ke halaman edit_data.php)
                 echo "<td><a class='edit-button' href='edit_data.php?id=" . $row["id"] . "'>Edit</a>";
@@ -184,7 +186,7 @@ $result = $conn->query($sql);
     </footer>
 </body>
 </html>
-    
+
 <?php
 // Menutup koneksi ke database
 $conn->close();
