@@ -72,6 +72,7 @@ if ($conn->connect_error) {
 }
 
 // Menangani form submit
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nama = $_POST["nama"];
     $alamat = $_POST["alamat"];
@@ -79,8 +80,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $jenis_kelamin = $_POST["jenis_kelamin"];
     $email = $_POST["email"];
 
+    $foto = $_FILES["foto"]["name"];
+    $foto_tmp = $_FILES["foto"]["tmp_name"];
+    $upload_directory = "uploads/";
+
+    // Pindahkan foto ke direktori uploads
+    move_uploaded_file($foto_tmp, $upload_directory . $foto);
+
+    // Set path gambar
+    $foto_path = $upload_directory . $foto;
+
+
     // SQL untuk menyisipkan data ke dalam tabel tbanggota
-    $sql = "INSERT INTO tbanggota (nama, alamat, tanggal_lahir, jenis_kelamin, email) VALUES ('$nama', '$alamat', '$tanggal_lahir', '$jenis_kelamin', '$email')";
+    $sql = "INSERT INTO tbanggota (nama, alamat, tanggal_lahir, jenis_kelamin, email, foto_path) VALUES ('$nama', '$alamat', '$tanggal_lahir', '$jenis_kelamin', '$email', '$foto_path')";
 
     if ($conn->query($sql) === TRUE) {
         echo "Data berhasil disimpan.";
@@ -151,7 +163,7 @@ $conn->close();
 </head>
 <body>
     <center><h2>Input Anggota</h2></center>
-    <form method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
+    <form method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>" enctype="multipart/form-data">
         <label for="nama">Nama:</label>
         <input type="text" name="nama" required>
 
@@ -167,6 +179,10 @@ $conn->close();
 
         <label for="email">Email:</label>
         <input type="email" name="email" required>
+
+        <label for="foto">Foto:</label>
+        <input type="file" name="foto" accept="image/*">
+
 
         <input type="submit" value="Simpan">
         <a href="tampilkan_data.php">Tampilkan Data</a>
