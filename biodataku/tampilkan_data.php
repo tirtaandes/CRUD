@@ -3,44 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Halaman Saya</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 10px;
-        }
-        nav {
-            background-color: #444;
-            color: #fff;
-            text-align: center;
-            padding: 10px;
-        }
-        main {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-        }
-        footer {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 10px;
-        }
-        nav ul li {
-    display: inline-block;
-    margin-right: 90px;
-}
-    </style>
+    
 </head>
 <body>
     <header>
@@ -84,62 +49,7 @@ $result = $conn->query($sql);
 </head>
 <body>
     <h2>Data Anggota</h2>
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        table, th, td {
-            border: 1px solid #ddd;
-        }
-
-        th, td {
-            padding: 10px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #f2f2f2;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-
-        tr:hover {
-            background-color: #ddd;
-        }
-
-        a {
-            text-decoration: none;
-            font-weight: bold;
-            color: #007BFF;
-        }
-        h2 {
-            text-decoration: none;
-            font-weight: bold;
-            color: #007BFF;
-        }
-        .edit-button, .delete-button {
-            background-color: #007BFF;
-            color: #fff;
-            padding: 5px 10px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-right: 5px;
-        }
-        a {
-            text-decoration: none;
-            font-weight: bold;
-            color: #007BFF;
-        }
-        .edit-button:hover, .delete-button:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    
 </head>
 <body>
     <table border="1">

@@ -130,6 +130,7 @@ $result = $conn->query($sql);
 //style
 
 
+
 // Inisialisasi variabel dengan data saat ini
 $nama = "";
 $alamat = "";
@@ -150,6 +151,7 @@ if ($result->num_rows > 0) {
 
 // Memproses form edit
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    header("Location: tampilkan_data.php");
     $nama = $_POST["nama"];
     $alamat = $_POST["alamat"];
     $tanggal_lahir = $_POST["tanggal_lahir"];
@@ -182,6 +184,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         // Jika tidak ada file foto yang diunggah, gunakan foto yang sudah ada
         $foto_path = $row["foto_path"];
+
+        
     }
 
     // SQL untuk melakukan update data
@@ -205,6 +209,7 @@ $conn->close();
 <body>
     <h2>Edit Data Anggota</h2>
     <form method="post" action="<?php echo $_SERVER["PHP_SELF"] . "?id=" . $id; ?>" enctype="multipart/form-data">
+    
         <label for="nama">Nama:</label>
         <input type="text" name="nama" value="<?php echo $nama; ?>" required><br><br>
 
@@ -221,7 +226,7 @@ $conn->close();
         <label for="email">Email:</label>
         <input type="email" name="email" value="<?php echo $email; ?>" required><br><br>
 
-      <!-- Tampilkan foto yang sudah ada -->
+    <!-- Tampilkan foto yang sudah ada -->
     <label for="foto">Foto saat ini:</label>
     <img src="<?php echo $row['foto_path']; ?>" alt="Foto saat ini" style="max-width: 200px;">
     <br>
