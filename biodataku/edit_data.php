@@ -157,8 +157,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $jenis_kelamin = $_POST["jenis_kelamin"];
     $email = $_POST["email"];
 
+    // Menangani foto
+    if (isset($_FILES["foto"])) {
+        $foto = $_FILES["foto"]["name"];
+        $foto_tmp = $_FILES["foto"]["tmp_name"];
+        $upload_directory = "uploads/";
+
+        // Jika ada foto baru diunggah, perbarui foto
+        if (!empty($foto)) {
+            // Hapus foto lama jika ada
+            if (file_exists($upload_directory . $row["foto_path"])) {
+                unlink($upload_directory . $row["foto_path"]);
+            }
+
+            // Pindahkan foto baru ke direktori uploads
+            if (move_uploaded_file($foto_tmp, $upload_directory . $foto)) {
+                $foto_path = $upload_directory . $foto;
+            } else {
+                echo "Gagal mengunggah foto.";
+            }
+        } else {
+            // Jika tidak ada foto baru diunggah, gunakan foto yang sudah ada
+            $foto_path = $row["foto_path"];
+        }
+    } else {
+        // Jika tidak ada file foto yang diunggah, gunakan foto yang sudah ada
+        $foto_path = $row["foto_path"];
+    }
+
     // SQL untuk melakukan update data
-    $sql = "UPDATE tbanggota SET nama='$nama', alamat='$alamat', tanggal_lahir='$tanggal_lahir', jenis_kelamin='$jenis_kelamin', email='$email' WHERE id = $id";
+    $sql = "UPDATE tbanggota SET nama='$nama', alamat='$alamat', tanggal_lahir='$tanggal_lahir', jenis_kelamin='$jenis_kelamin', email='$email', foto_path='$foto_path' WHERE id = $id";
 
     if ($conn->query($sql) === TRUE) {
         echo "Data berhasil diperbarui.";
@@ -166,7 +194,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
 }
-
 // Menutup koneksi ke database
 $conn->close();
 ?>
@@ -178,7 +205,7 @@ $conn->close();
 </head>
 <body>
     <h2>Edit Data Anggota</h2>
-    <form method="post" action="<?php echo $_SERVER["PHP_SELF"] . "?id=" . $id; ?>">
+    <form method="post" action="<?php echo $_SERVER["PHP_SELF"] . "?id=" . $id; ?>" enctype="multipart/form-data">
         <label for="nama">Nama:</label>
         <input type="text" name="nama" value="<?php echo $nama; ?>" required><br><br>
 
@@ -194,6 +221,17 @@ $conn->close();
 
         <label for="email">Email:</label>
         <input type="email" name="email" value="<?php echo $email; ?>" required><br><br>
+
+      <!-- Tampilkan foto yang sudah ada -->
+    <label for="foto">Foto saat ini:</label>
+    <img src="<?php echo $row['foto_path']; ?>" alt="Foto saat ini" style="max-width: 200px;">
+    <br>
+
+    <!-- Input untuk mengganti foto -->
+    <label for="foto">Ganti Foto:</label>
+    <input type="file" name="foto" accept="image/*">
+    <br>
+
 
         <input type="submit" value="Simpan Perubahan">
     </form>
