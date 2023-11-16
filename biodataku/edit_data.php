@@ -40,7 +40,6 @@
     display: inline-block;
     margin-right: 90px;
 }
-<style>
         body {
             font-family: Arial, sans-serif;
         }
