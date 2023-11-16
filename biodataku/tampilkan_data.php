@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Halaman Saya</title>
+    <title>SMKN 6 MUARO JAMBI</title>
     
 </head>
 <body>
     <header>
-    <h1>PENDATAAN ANGGOTA SMK</h1>
+    <h1>PENDATAAN ANGGOTA SMK NEGERI 6 MUARO JAMBI</h1>
     </header>
     <nav>
         <ul>
