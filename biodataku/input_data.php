@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Halaman Saya</title>
+    <title>SMKN 6 MUARO JAMBI</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -44,7 +44,7 @@
 </head>
 <body>
     <header>
-    <h1>PENDATAAN ANGGOTA SMK</h1>
+    <h1>PENDATAAN ANGGOTA SMK NEGERI 6 MUARO JAMBI</h1>
     </header>
     <nav>
         <ul>
